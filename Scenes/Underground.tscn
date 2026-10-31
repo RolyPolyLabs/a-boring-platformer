@@ -31,6 +31,8 @@
 [ext_resource type="PackedScene" uid="uid://dtjx5d6pp407p" path="res://Scenes/flashlight.tscn" id="28_j3hw6"]
 [ext_resource type="Texture2D" uid="uid://c7122wvcioy2d" path="res://Pixel Art/Arrow.png" id="30_1wqv4"]
 [ext_resource type="PackedScene" uid="uid://dh2lslprl4vfe" path="res://Scenes/Spider.tscn" id="31_mjcqi"]
+[ext_resource type="Shader" uid="uid://b7mojo2fx3cdc" path="res://Shaders/Spider.gdshader" id="32_xirqa"]
+[ext_resource type="Texture2D" uid="uid://becn2h6f0mvek" path="res://Pixel Art/Platform.png" id="33_aq2km"]
 
 [sub_resource type="Gradient" id="Gradient_pdxid"]
 colors = PackedColorArray(0.20230234, 0.094620325, 1.2032688e-08, 1, 1, 1, 1, 0)
@@ -213,8 +215,28 @@ gradient = SubResource("Gradient_oic26")
 fill_from = Vector2(0, 0.6173913)
 fill_to = Vector2(0, 0.50869566)
 
-[sub_resource type="Animation" id="Animation_vvdxf"]
-length = 1.0333333
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aq2km"]
+shader = ExtResource("32_xirqa")
+shader_parameter/fragment_number = Vector2(70, 70)
+shader_parameter/dissolve_state = 1.0
+
+[sub_resource type="Animation" id="Animation_mjcqi"]
+resource_name = "Explode"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/dissolve_state")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_2pi7h"]
+resource_name = "Run"
 loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -240,26 +262,22 @@ tracks/1/keys = {
 "update": 1,
 "values": [false, true]
 }
-
-[sub_resource type="Animation" id="Animation_2pi7h"]
-resource_name = "Run"
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:material:shader_parameter/dissolve_state")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(239, 304), Vector2(178, 304)]
+"values": [1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xirqa"]
 _data = {
-&"RESET": SubResource("Animation_vvdxf"),
+&"Explode": SubResource("Animation_mjcqi"),
 &"Run": SubResource("Animation_2pi7h")
 }
 
@@ -279,7 +297,7 @@ tile_map_data = PackedByteArray("AAABABYAAQAAAAAAAAAXABYAAQAAAAAAAAAYABYAAQAAAAA
 tile_set = SubResource("TileSet_q0ycs")
 
 [node name="Player" parent="." unique_id=1376574703 instance=ExtResource("6_g1c18")]
-position = Vector2(176, 753)
+position = Vector2(178.00003, 857.00006)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1069903641]
 position = Vector2(15.416679, -8.52272)
@@ -369,6 +387,7 @@ position = Vector2(-2, 383)
 shape = SubResource("WorldBoundaryShape2D_gab5h")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=287391503]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1634377457]
@@ -610,12 +629,17 @@ rotation = 3.1415927
 texture = ExtResource("30_1wqv4")
 
 [node name="Spider" parent="." unique_id=1652538187 instance=ExtResource("31_mjcqi")]
-position = Vector2(897, 885.00006)
+position = Vector2(733.9584, 885.00006)
 scale = Vector2(1.6929188, 1.6929188)
+
+[node name="AnimatedSprite2D" parent="Spider" index="1" unique_id=1914530186]
+material = SubResource("ShaderMaterial_aq2km")
+animation = &"Walk"
+flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Spider" unique_id=789298383]
 libraries/ = SubResource("AnimationLibrary_xirqa")
-autoplay = &"RESET"
+autoplay = &"Run"
 
 [node name="PointLight2D" type="PointLight2D" parent="Spider" unique_id=1373772063]
 color = Color(0.8937964, 0, 0.16396236, 1)
@@ -626,5 +650,21 @@ shadow_filter_smooth = 64.0
 texture = ExtResource("8_k5q4b")
 texture_scale = 0.22
 script = ExtResource("10_t5owa")
+
+[node name="Control" type="Control" parent="." unique_id=711439971]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1157.0
+offset_bottom = 664.0
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=1833183707]
+top_level = true
+light_mask = 0
+layout_mode = 0
+offset_left = 116.0
+offset_top = 40.0
+offset_right = 1001.0
+offset_bottom = 601.0
+texture = ExtResource("33_aq2km")
 
 [editable path="Spider"]

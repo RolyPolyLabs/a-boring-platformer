@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b178qtr0jy1gi"
+path="res://.godot/imported/freesound_community-winsquare-6993.mp3-83ca24541281d3a064551b1f334f2346.mp3str"
+
+[deps]
+
+source_file="res://Sound Effects/freesound_community-winsquare-6993.mp3"
+dest_files=["res://.godot/imported/freesound_community-winsquare-6993.mp3-83ca24541281d3a064551b1f334f2346.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
