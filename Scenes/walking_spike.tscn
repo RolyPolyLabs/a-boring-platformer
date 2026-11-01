@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://bpbpn36sw64tp"]
+
+[ext_resource type="Texture2D" uid="uid://bhg4x3woh026n" path="res://Pixel Art/Walking spike.png" id="1_ngbtu"]
+[ext_resource type="Script" uid="uid://c73esjm0v2207" path="res://Scripts/walking_spike.gd" id="1_rohu0"]
+[ext_resource type="Texture2D" uid="uid://c5ich60bbjlaa" path="res://Pixel Art/Spike Not Walking Corrected.png" id="3_cl354"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rohu0"]
+atlas = ExtResource("1_ngbtu")
+region = Rect2(0, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cl354"]
+atlas = ExtResource("1_ngbtu")
+region = Rect2(16, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwh6f"]
+atlas = ExtResource("1_ngbtu")
+region = Rect2(32, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6sgx"]
+atlas = ExtResource("1_ngbtu")
+region = Rect2(0, 20, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1mns"]
+atlas = ExtResource("1_ngbtu")
+region = Rect2(16, 20, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4ur2"]
+atlas = ExtResource("3_cl354")
+region = Rect2(0, 0, 16, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ppf8u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rohu0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cl354")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwh6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6sgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1mns")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4ur2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rohu0"]
+size = Vector2(44, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cl354"]
+size = Vector2(20, 19)
+
+[node name="Walking Spike" type="CharacterBody2D" unique_id=919398278]
+script = ExtResource("1_rohu0")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="." unique_id=791615315]
+sprite_frames = SubResource("SpriteFrames_ppf8u")
+autoplay = "default"
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=908526643]
+target_position = Vector2(20, 0)
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=1042392524]
+target_position = Vector2(-21, 0)
+
+[node name="Trigger Area" type="Area2D" parent="." unique_id=2044420623]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger Area" unique_id=41937670]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_rohu0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=891512997]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_cl354")
+
+[connection signal="body_entered" from="Trigger Area" to="." method="_on_trigger_area_body_entered"]

@@ -31,3 +31,7 @@ func _on_waterflame_pressed() -> void:
 
 func _on_shop_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Breadshop.tscn")
+
+
+func _on_map_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/map.tscn")

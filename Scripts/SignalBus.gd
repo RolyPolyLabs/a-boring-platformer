@@ -11,7 +11,7 @@ signal lightchange
 signal shader_toggled(enabled: bool)
 var score: int = 0
 signal ScoreChanged
-
+var map1: int = 0
 
 
 func add_point(amount: int = 1):

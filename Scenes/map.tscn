@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://bipg5vknxn5f2"]
+
+[ext_resource type="Texture2D" uid="uid://rkxhqoom12wk" path="res://Pixel Art/MAP(Piece 1) (1).png" id="1_ci6au"]
+[ext_resource type="Script" uid="uid://b4781pk22mgyh" path="res://Scripts/map.gd" id="1_myvm1"]
+[ext_resource type="Texture2D" uid="uid://c7122wvcioy2d" path="res://Pixel Art/Arrow.png" id="2_26yhd"]
+[ext_resource type="AudioStream" uid="uid://bbji325e17mjw" path="res://Sound Effects/freesound_community-wronganswer-37702.mp3" id="3_p3ir5"]
+
+[node name="Map" type="Control" unique_id=701263840]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_myvm1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1697808175]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+position = Vector2(576.8333, 324.5)
+scale = Vector2(10.816667, 10.816667)
+texture = ExtResource("1_ci6au")
+
+[node name="Right" type="TextureButton" parent="." unique_id=1195070984]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 384.00006
+offset_top = 80.00003
+offset_right = 400.00006
+offset_bottom = 96.00003
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5707964
+scale = Vector2(10, 10)
+texture_normal = ExtResource("2_26yhd")
+
+[node name="Left" type="TextureButton" parent="." unique_id=1542933855]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -380.0
+offset_top = -80.0
+offset_right = -364.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -4.712389
+scale = Vector2(10, 10)
+texture_normal = ExtResource("2_26yhd")
+
+[node name="Up" type="TextureButton" parent="." unique_id=116003396]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 79.0
+offset_top = -162.00003
+offset_right = 95.0
+offset_bottom = -146.00003
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -3.1415927
+scale = Vector2(10, 10)
+texture_normal = ExtResource("2_26yhd")
+
+[node name="Down" type="TextureButton" parent="." unique_id=2118271290]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.99988
+offset_top = 166.0
+offset_right = -64.99988
+offset_bottom = 182.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(10, 10)
+texture_normal = ExtResource("2_26yhd")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1871794859]
+stream = ExtResource("3_p3ir5")
+volume_db = 10.0
+
+[node name="Back" type="Button" parent="." unique_id=336546974]
+layout_mode = 0
+offset_left = 978.0
+offset_top = 549.0
+offset_right = 1104.2903
+offset_bottom = 636.0
+theme_override_font_sizes/font_size = 28
+text = "Back"
+
+[connection signal="pressed" from="Right" to="." method="_on_right_pressed"]
+[connection signal="pressed" from="Left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="Up" to="." method="_on_up_pressed"]
+[connection signal="pressed" from="Down" to="." method="_on_down_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

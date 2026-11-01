@@ -99,6 +99,7 @@ script = ExtResource("1_cvnsp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=317697821]
 sprite_frames = SubResource("SpriteFrames_vgqql")
 animation = &"run"
+frame_progress = 0.031970654
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=86701027]
 position = Vector2(0, 1.2000003)

@@ -53,6 +53,14 @@ modulate_color = Color(0.26767585, 0.5315847, 0.47120225, 1)
 texture = ExtResource("4_n82rj")
 modulate_color = Color(0.18181673, 0.3880866, 0.33998352, 1)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bsy20"]
+texture = ExtResource("4_n82rj")
+modulate_color = Color(0, 0.50264376, 0.77331597, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_07cxn"]
+texture = ExtResource("4_n82rj")
+modulate_color = Color(1.4439226e-07, 0.36413413, 0.567762, 1)
+
 [node name="TitleScreen" type="Control" unique_id=387759]
 layout_mode = 3
 anchors_preset = 15
@@ -171,6 +179,20 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_o1e67")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ycay6")
 text = "Shop"
 
+[node name="Map" type="Button" parent="." unique_id=1065501207]
+layout_mode = 0
+offset_left = 897.0
+offset_top = 405.0
+offset_right = 1059.0
+offset_bottom = 475.0
+theme = ExtResource("2_twnyg")
+theme_override_fonts/font = ExtResource("3_55kwv")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_bsy20")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_bsy20")
+theme_override_styles/hover = SubResource("StyleBoxTexture_07cxn")
+text = "Map"
+
 [connection signal="pressed" from="Main Menu/Menu Options/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Main Menu/Menu Options/Levels" to="." method="_on_levels_pressed"]
 [connection signal="pressed" from="Main Menu/Menu Options/Options" to="." method="_on_options_pressed"]
@@ -178,3 +200,4 @@ text = "Shop"
 [connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Waterflame" to="." method="_on_waterflame_pressed"]
 [connection signal="pressed" from="Shop" to="." method="_on_shop_pressed"]
+[connection signal="pressed" from="Map" to="." method="_on_map_pressed"]

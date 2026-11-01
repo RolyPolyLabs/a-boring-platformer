@@ -19,6 +19,6 @@ func _process(delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	canvas_layer_2.show()
 	$AudioStreamPlayer.play()
-	
+	SignalBus.map1 = 1
 	
 	
